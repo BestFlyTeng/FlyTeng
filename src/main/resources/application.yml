@@ -1,0 +1,17 @@
+server:
+  port: 3000
+spring:
+  datasource:
+    username: root
+    password: b8c0862526304daeb0f51a245a1d20dd
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/flyteng
+  devtools:
+    restart:
+      enabled: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      username: default
