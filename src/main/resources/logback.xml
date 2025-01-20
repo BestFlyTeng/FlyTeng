@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logback 配置解析的调试模式 -->
+<configuration debug="false">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="LOG_HOME" value="./logs"/>
+    <property name="LOG_FILE_SAVE_DAY" value="30"/>
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>
+                %blue(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %green([%thread]) %boldMagenta(%logger{50}) - %boldGreen(%msg) %n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="i" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/info/%d{yyyy-MM-dd-HH}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>${LOG_FILE_SAVE_DAY}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50} - %msg %n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>-->
+    </appender>
+    <appender name="d" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/debug/%d{yyyy-MM-dd-HH}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>${LOG_FILE_SAVE_DAY}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50} - %msg %n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>-->
+    </appender>
+    <appender name="w" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/warn/%d{yyyy-MM-dd-HH}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>${LOG_FILE_SAVE_DAY}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50} - %msg %n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>-->
+    </appender>
+    <appender name="e" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/error/%d{yyyy-MM-dd-HH}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>${LOG_FILE_SAVE_DAY}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50} - %msg %n
+            </pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>-->
+    </appender>
+
+
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="i"/>
+        <appender-ref ref="d"/>
+        <appender-ref ref="w"/>
+        <appender-ref ref="e"/>
+    </root>
+    <!--myibatis log configure-->
+<!--    <logger name="com.apache.ibatis" level="TRACE"/>-->
+<!--    <logger name="java.sql.Connection" level="DEBUG"/>-->
+<!--    <logger name="java.sql.Statement" level="DEBUG"/>-->
+<!--    <logger name="java.sql.PreparedStatement" level="DEBUG"/>-->
+    <!--日志异步到数据库 -->
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+    <!--&lt;!&ndash;日志异步到数据库 &ndash;&gt;-->
+    <!--<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">-->
+    <!--&lt;!&ndash;连接池 &ndash;&gt;-->
+    <!--<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+    <!--<driverClass>com.mysql.jdbc.Driver</driverClass>-->
+    <!--<url>jdbc:mysql://127.0.0.1:3306/databaseName</url>-->
+    <!--<user>root</user>-->
+    <!--<password>root</password>-->
+    <!--</dataSource>-->
+    <!--</connectionSource>-->
+    <!--</appender>-->
+</configuration>

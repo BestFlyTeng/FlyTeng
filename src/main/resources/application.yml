@@ -1,5 +1,11 @@
 server:
   port: 3000
+  servlet:
+    context-path: /api
+  error:
+    whitelabel:
+      enabled: false
+    path: /error
 spring:
   datasource:
     username: root
@@ -13,5 +19,26 @@ spring:
     redis:
       host: localhost
       port: 6379
-      password:
-      username: default
+      password: 8b860754fb2c45e9bc5f2e52f2217335
+#      username: default
+  #邮件服务配置
+  mail:
+    host: smtp.163.com #邮件服务器地址
+    protocol: smtp #协议
+    username: m19833028070@163.com #发送邮件的邮箱也就是你开通服务的邮箱
+    password: TLNOFJSYQPYWISOA #开通服务后得到的授权码
+    default-encoding: utf-8 #邮件内容的编码
+    port: 25
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  typeAliasesPackage: com.best.flyteng.entity
+mybatis-plus-join:
+  banner: false
+logging:
+  level:
+    root: debug
+sm:
+  public:
+    key: 04e02719f254c466aaa697582d1476ceed814ba43c7959cc5fc39b48fb2651d9ef5d52b591566936be99e2f9c381e4ebb9b0c1efb934fb9e92175e1cede88017c2
+  private:
+    key: 0096315cfc655036bb8995d98e0a6145a044f5c34b743870b29d35beee40e225c1
