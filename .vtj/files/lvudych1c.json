@@ -1,0 +1,303 @@
+{
+  "name": "Header",
+  "locked": false,
+  "inject": [],
+  "state": {
+    "defaultActive": {
+      "type": "JSExpression",
+      "value": "'/'"
+    },
+    "token": {
+      "type": "JSExpression",
+      "value": "localStorage.getItem(\"token\")"
+    }
+  },
+  "lifeCycles": {},
+  "methods": {},
+  "computed": {
+    "isLogin": {
+      "type": "JSFunction",
+      "value": "() => {\r\n    return this.state.isLogin = this.state.token === undefined\r\n        || this.state.token === null\r\n        || this.state.token === ''\r\n}"
+    }
+  },
+  "watch": [
+    {
+      "source": {
+        "type": "JSFunction",
+        "value": "() => { this.$route.path }"
+      },
+      "deep": true,
+      "immediate": true,
+      "handler": {
+        "type": "JSFunction",
+        "value": "() => {\r\n    this.state.defaultActive = this.$route.path === '/' ? '/page/7zqjmq3kps' : this.$route.path\r\n}"
+      },
+      "id": "ibxj1m0xt3"
+    }
+  ],
+  "css": ".el-menu--horizontal .el-menu-item:not(.is-disabled):focus,\r\n.el-menu--horizontal .el-menu-item:not(.is-disabled):hover {\r\n    background-color: transparent;\r\n}",
+  "props": [],
+  "emits": [],
+  "slots": [],
+  "dataSources": {
+    "logout": {
+      "type": "api",
+      "ref": "g5y4h7xj6h",
+      "name": "logout",
+      "label": "退出登录",
+      "transform": {
+        "value": "(res) => {\r\n    return res;\r\n}"
+      },
+      "test": {
+        "type": "JSFunction",
+        "value": "() => this.runApi({\n    /* 在这里可输入接口参数  */\n})"
+      },
+      "mockTemplate": {
+        "type": "JSFunction"
+      }
+    }
+  },
+  "__VTJ_BLOCK__": true,
+  "__VERSION__": "1739002489634",
+  "id": "lvudych1c",
+  "nodes": [
+    {
+      "id": "pfgbo5vh6",
+      "name": "ElRow",
+      "from": "element-plus",
+      "invisible": false,
+      "locked": false,
+      "children": [
+        {
+          "id": "sz29dyy6y",
+          "name": "ElCol",
+          "from": "element-plus",
+          "invisible": false,
+          "locked": false,
+          "children": [
+            {
+              "id": "wio73s0wq",
+              "name": "component",
+              "from": "",
+              "invisible": false,
+              "locked": false,
+              "children": [
+                {
+                  "id": "4n7tsci71t",
+                  "name": "img",
+                  "from": "",
+                  "invisible": false,
+                  "locked": false,
+                  "children": [],
+                  "props": {
+                    "src": "/src/assets/logo.png",
+                    "width": "",
+                    "height": "",
+                    "style": {
+                      "height": "70%"
+                    }
+                  },
+                  "directives": [],
+                  "events": {}
+                }
+              ],
+              "props": {
+                "is": "div",
+                "style": {
+                  "height": "100%",
+                  "display": "flex",
+                  "justify-content": "center",
+                  "align-items": "center"
+                }
+              },
+              "directives": [],
+              "events": {}
+            }
+          ],
+          "props": {
+            "span": 6,
+            "style": {
+              "display": "flex",
+              "height": "100%",
+              "justify-content": "center"
+            }
+          },
+          "directives": [],
+          "events": {}
+        },
+        {
+          "id": "3k84hglmux",
+          "name": "ElCol",
+          "from": "element-plus",
+          "invisible": false,
+          "locked": false,
+          "children": [
+            {
+              "id": "3nrqf6epkp",
+              "name": "component",
+              "from": "",
+              "invisible": false,
+              "locked": false,
+              "children": [
+                {
+                  "id": "anfzx38lyp",
+                  "name": "ElMenu",
+                  "from": "element-plus",
+                  "invisible": false,
+                  "locked": false,
+                  "children": [
+                    {
+                      "id": "aqzlut1ooh",
+                      "name": "ElMenuItem",
+                      "from": "element-plus",
+                      "invisible": false,
+                      "locked": false,
+                      "children": "首页",
+                      "props": {
+                        "index": "/page/7zqjmq3kps",
+                        "style": {}
+                      },
+                      "directives": [],
+                      "events": {}
+                    },
+                    {
+                      "id": "el8dhqakb2",
+                      "name": "ElSubMenu",
+                      "from": "element-plus",
+                      "invisible": false,
+                      "locked": false,
+                      "children": [
+                        {
+                          "id": "eorzfg3n0u",
+                          "name": "component",
+                          "from": "",
+                          "invisible": false,
+                          "locked": false,
+                          "slot": {
+                            "name": "title",
+                            "params": []
+                          },
+                          "children": "我的",
+                          "props": {
+                            "is": "div"
+                          },
+                          "directives": [],
+                          "events": {}
+                        },
+                        {
+                          "id": "esbld5wpqm",
+                          "name": "ElMenuItem",
+                          "from": "element-plus",
+                          "invisible": false,
+                          "locked": false,
+                          "children": "退出登录",
+                          "props": {
+                            "index": ""
+                          },
+                          "directives": [],
+                          "events": {
+                            "click": {
+                              "name": "click",
+                              "handler": {
+                                "type": "JSFunction",
+                                "value": "() => {\r\n    this.logout().catch(result => { })\r\n    localStorage.removeItem(\"token\")\r\n    this.$router.push('/page/7zqjmq3kps')\r\n    this.state.token = localStorage.getItem(\"token\")\r\n}"
+                              },
+                              "modifiers": {}
+                            }
+                          }
+                        }
+                      ],
+                      "props": {
+                        "index": ""
+                      },
+                      "directives": [
+                        {
+                          "id": "1hsbxhswpr",
+                          "name": "vShow",
+                          "value": {
+                            "type": "JSExpression",
+                            "value": "!this.isLogin.value"
+                          }
+                        }
+                      ],
+                      "events": {}
+                    },
+                    {
+                      "id": "231zfwsu8i",
+                      "name": "ElMenuItem",
+                      "from": "element-plus",
+                      "invisible": false,
+                      "locked": false,
+                      "children": "登录",
+                      "props": {
+                        "index": "/page/491e1ozku2"
+                      },
+                      "directives": [
+                        {
+                          "id": "a5pycgewpf",
+                          "name": "vShow",
+                          "value": {
+                            "type": "JSExpression",
+                            "value": "this.isLogin.value"
+                          }
+                        }
+                      ],
+                      "events": {}
+                    }
+                  ],
+                  "props": {
+                    "mode": "horizontal",
+                    "style": {
+                      "background-color": "transparent",
+                      "height": "100%",
+                      "display": "flex",
+                      "justify-content": "flex-end",
+                      "border-bottom": "none"
+                    },
+                    "router": true,
+                    "collapse": false,
+                    "ellipsis": false,
+                    "defaultActive": {
+                      "type": "JSExpression",
+                      "value": "this.state.defaultActive"
+                    },
+                    "closeOnClickOutside": true
+                  },
+                  "directives": [],
+                  "events": {}
+                }
+              ],
+              "props": {
+                "is": "div",
+                "style": {
+                  "height": "100%"
+                }
+              },
+              "directives": [],
+              "events": {}
+            }
+          ],
+          "props": {
+            "span": 18,
+            "style": {
+              "display": "flex",
+              "flex-direction": "row-reverse",
+              "height": "100%"
+            }
+          },
+          "directives": [],
+          "events": {}
+        }
+      ],
+      "props": {
+        "style": {
+          "height": "5rem",
+          "background-color": "rgb(255 255 255 / 30%)",
+          "backdrop-filter": "blur(5px)"
+        }
+      },
+      "directives": [],
+      "events": {}
+    }
+  ]
+}

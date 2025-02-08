@@ -1,0 +1,338 @@
+{
+  "name": "Login",
+  "locked": false,
+  "inject": [],
+  "state": {
+    "formParams": {
+      "type": "JSExpression",
+      "value": "{\r\n    email: \"\",\r\n        password: \"\"\r\n}"
+    }
+  },
+  "lifeCycles": {},
+  "methods": {
+    "validateEmail": {
+      "type": "JSFunction",
+      "value": "(rule, value, callback) => {\r\n    if (!/^[A-Za-z0-9_\\-]+(\\.[A-Za-z0-9_\\-]+)*@[A-Za-z0-9\\-]+\\.[A-Za-z]{2,}$/.test(value)) {\r\n        callback(new Error(\"邮箱不合法\"))\r\n    } else {\r\n        callback()\r\n    }\r\n    callback()\r\n}"
+    }
+  },
+  "computed": {},
+  "watch": [],
+  "css": "",
+  "props": [],
+  "emits": [],
+  "slots": [],
+  "dataSources": {
+    "login": {
+      "type": "api",
+      "ref": "73u29q8208",
+      "name": "login",
+      "label": "登录",
+      "transform": {
+        "type": "JSFunction",
+        "value": "(res) => {\n    return res;\n}"
+      },
+      "test": {
+        "type": "JSFunction",
+        "value": "() => this.runApi({\n    /* 在这里可输入接口参数  */\n})"
+      },
+      "mockTemplate": {
+        "type": "JSFunction"
+      }
+    }
+  },
+  "__VTJ_BLOCK__": true,
+  "__VERSION__": "1738984306662",
+  "id": "491e1ozku2",
+  "nodes": [
+    {
+      "id": "1lbxtkoe10",
+      "name": "HeaderIndex",
+      "from": {
+        "type": "Schema",
+        "id": "lvudych1c"
+      },
+      "invisible": false,
+      "locked": false,
+      "children": [],
+      "props": {},
+      "directives": [],
+      "events": {}
+    },
+    {
+      "id": "1sf5p0ayuk",
+      "name": "div",
+      "from": "",
+      "invisible": false,
+      "locked": false,
+      "children": [
+        {
+          "id": "1vyrmq41kc",
+          "name": "h3",
+          "from": "",
+          "invisible": false,
+          "locked": false,
+          "children": "登录",
+          "props": {
+            "style": {
+              "font-size": "3rem",
+              "font-weight": "bolder",
+              "background-image": "linear-gradient(-45deg, #a6c0fe 0%, #f68084 100%)",
+              "-webkit-text-fill-color": "transparent",
+              "background-clip": "text",
+              "text-align": "center",
+              "margin-top": "1rem",
+              "margin-bottom": "1rem"
+            }
+          },
+          "directives": [],
+          "events": {}
+        },
+        {
+          "id": "1zidkfx4a4",
+          "name": "ElForm",
+          "from": "element-plus",
+          "invisible": false,
+          "locked": false,
+          "children": [
+            {
+              "id": "2a57dlccfg",
+              "name": "ElFormItem",
+              "from": "element-plus",
+              "invisible": false,
+              "locked": false,
+              "children": [
+                {
+                  "id": "2dotbb5f58",
+                  "name": "ElInput",
+                  "from": "element-plus",
+                  "invisible": false,
+                  "locked": false,
+                  "children": [],
+                  "props": {
+                    "autosize": false,
+                    "showPassword": false,
+                    "rows": 1,
+                    "name": "",
+                    "placeholder": "请输入邮箱"
+                  },
+                  "directives": [
+                    {
+                      "id": "qzv5f7xku1",
+                      "name": "vModel",
+                      "arg": "modelValue",
+                      "value": {
+                        "type": "JSExpression",
+                        "value": "this.state.formParams.email"
+                      }
+                    }
+                  ],
+                  "events": {}
+                }
+              ],
+              "props": {
+                "label": "邮箱",
+                "required": true,
+                "inlineMessage": false,
+                "prop": "email"
+              },
+              "directives": [],
+              "events": {}
+            },
+            {
+              "id": "2yygxlzvfw",
+              "name": "ElFormItem",
+              "from": "element-plus",
+              "invisible": false,
+              "locked": false,
+              "children": [
+                {
+                  "id": "32i2vbsy5o",
+                  "name": "ElInput",
+                  "from": "element-plus",
+                  "invisible": false,
+                  "locked": false,
+                  "children": [],
+                  "props": {
+                    "autosize": false,
+                    "showPassword": true,
+                    "rows": 1,
+                    "name": "",
+                    "placeholder": "请输入密码"
+                  },
+                  "directives": [
+                    {
+                      "id": "qzv5f7xku1",
+                      "name": "vModel",
+                      "arg": "modelValue",
+                      "value": {
+                        "type": "JSExpression",
+                        "value": "this.state.formParams.password"
+                      }
+                    }
+                  ],
+                  "events": {}
+                }
+              ],
+              "props": {
+                "label": "密码",
+                "required": true,
+                "inlineMessage": false,
+                "prop": "password"
+              },
+              "directives": [],
+              "events": {}
+            },
+            {
+              "id": "3d4woh86b0",
+              "name": "ElFormItem",
+              "from": "element-plus",
+              "invisible": false,
+              "locked": false,
+              "children": [
+                {
+                  "id": "3goim7190s",
+                  "name": "ElButton",
+                  "from": "element-plus",
+                  "invisible": false,
+                  "locked": false,
+                  "children": "登录",
+                  "props": {
+                    "type": "primary"
+                  },
+                  "directives": [],
+                  "events": {
+                    "click": {
+                      "name": "click",
+                      "handler": {
+                        "type": "JSFunction",
+                        "value": "async () => {\r\n    await this.$refs.formRef.validate((vaild) => {\r\n        if (vaild) {\r\n            this.login(this.state.formParams)\r\n                .catch(error => {\r\n                    if (error.status === 200) {\r\n                        localStorage.setItem(\"token\", error.data.token)\r\n                        this.$router.push('/page/7zqjmq3kps')\r\n                    }\r\n                })\r\n        }\r\n    })\r\n}"
+                      },
+                      "modifiers": {}
+                    }
+                  }
+                },
+                {
+                  "id": "3k84jwubql",
+                  "name": "ElButton",
+                  "from": "element-plus",
+                  "invisible": false,
+                  "locked": false,
+                  "children": "重置",
+                  "props": {
+                    "type": "default",
+                    "link": false
+                  },
+                  "directives": [],
+                  "events": {
+                    "click": {
+                      "name": "click",
+                      "handler": {
+                        "type": "JSFunction",
+                        "value": "() => {\r\n    this.$refs.formRef.resetFields()\r\n}"
+                      },
+                      "modifiers": {}
+                    }
+                  }
+                },
+                {
+                  "id": "2a57f30btj",
+                  "name": "ElButton",
+                  "from": "element-plus",
+                  "invisible": false,
+                  "locked": false,
+                  "children": [
+                    {
+                      "id": "pfgflznxm",
+                      "name": "RouterLink",
+                      "from": "vue-router",
+                      "invisible": false,
+                      "locked": false,
+                      "children": "去注册",
+                      "props": {
+                        "to": "/page/2rv8zxlbzw",
+                        "style": {
+                          "text-decoration": "none",
+                          "color": "#636363",
+                          "height": "100%",
+                          "padding": "8px 15px"
+                        }
+                      },
+                      "directives": [],
+                      "events": {}
+                    }
+                  ],
+                  "props": {
+                    "type": "default",
+                    "style": {
+                      "margin-left": "auto",
+                      "padding-left": "0px",
+                      "padding-bottom": "0px",
+                      "padding-right": "0px",
+                      "padding-top": "0px"
+                    }
+                  },
+                  "directives": [],
+                  "events": {}
+                }
+              ],
+              "props": {
+                "label": " ",
+                "style": {}
+              },
+              "directives": [],
+              "events": {}
+            }
+          ],
+          "props": {
+            "labelWidth": "80px",
+            "model": {
+              "type": "JSExpression",
+              "value": "this.state.formParams"
+            },
+            "inlineMessage": false,
+            "statusIcon": true,
+            "disabled": false,
+            "showMessage": true,
+            "scrollToError": false,
+            "hideRequiredAsterisk": false,
+            "rules": {
+              "type": "JSExpression",
+              "value": "{\r\n    email: [\r\n        { required: true, message: '请输入邮箱', trigger: 'blur' },\r\n        { validator: this.validateEmail, trigger: 'blur' },\r\n    ],\r\n        password: [\r\n            { required: true, message: '请输入密码', trigger: 'blur' },\r\n            { min: 8, max: 16, message: '长度应是8-16', trigger: 'blur' },\r\n        ]\r\n}"
+            },
+            "ref": "formRef"
+          },
+          "directives": [],
+          "events": {}
+        }
+      ],
+      "props": {
+        "style": {
+          "padding": "1rem",
+          "background-color": "rgb(255 255 255 / 30%)",
+          "backdrop-filter": "blur(5px)",
+          "border-radius": "1rem",
+          "width": "80%",
+          "margin": "2rem auto"
+        }
+      },
+      "directives": [],
+      "events": {}
+    },
+    {
+      "id": "102a7b6r01",
+      "name": "FooterIndex",
+      "from": {
+        "type": "Schema",
+        "id": "2ks14fk04a"
+      },
+      "invisible": false,
+      "locked": false,
+      "children": [],
+      "props": {
+        "style": {}
+      },
+      "directives": [],
+      "events": {}
+    }
+  ]
+}

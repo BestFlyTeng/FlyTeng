@@ -1,0 +1,33 @@
+{
+  "name": "project",
+  "description": "VTJ.PRO",
+  "private": true,
+  "version": "0.9.0",
+  "type": "module",
+  "scripts": {
+    "setup": "npm install --unsafe-perm --registry=https://registry.npmmirror.com",
+    "dev": "cross-env ENV_TYPE=local vite --force",
+    "postinstall": "patch-package",
+    "build": "npm run build:prod",
+    "build:sit": "vue-tsc && cross-env ENV_TYPE=sit vite build",
+    "build:uat": "vue-tsc && cross-env ENV_TYPE=uat vite build",
+    "build:pre": "vue-tsc && cross-env ENV_TYPE=pre vite build",
+    "build:prod": "vue-tsc && cross-env ENV_TYPE=live vite build",
+    "preview": "vite preview",
+    "clean": "node ./scripts/clean.mjs"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@vtj/web": "latest",
+    "element-plus": "^2.9.3",
+    "patch-package": "^8.0.0",
+    "sm-crypto": "^0.3.13",
+    "vite": "^6.0.11",
+    "vue": "~3.5.0",
+    "vue-router": "~4.5.0"
+  },
+  "devDependencies": {
+    "@vtj/cli": "^0.9.8",
+    "@vtj/pro": "latest"
+  }
+}

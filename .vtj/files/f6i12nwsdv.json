@@ -1,0 +1,56 @@
+{
+  "name": "WaitDevelop",
+  "locked": false,
+  "inject": [],
+  "state": {},
+  "lifeCycles": {},
+  "methods": {},
+  "computed": {},
+  "watch": [],
+  "css": "",
+  "props": [],
+  "emits": [],
+  "slots": [],
+  "dataSources": {},
+  "__VTJ_BLOCK__": true,
+  "__VERSION__": "1738903118197",
+  "id": "f6i12nwsdv",
+  "nodes": [
+    {
+      "id": "fa1n0dq44o",
+      "name": "div",
+      "from": "",
+      "invisible": false,
+      "locked": false,
+      "children": [
+        {
+          "id": "fh4uvtchc7",
+          "name": "p",
+          "from": "",
+          "invisible": false,
+          "locked": false,
+          "children": "待开发",
+          "props": {},
+          "directives": [],
+          "events": {}
+        }
+      ],
+      "props": {
+        "style": {
+          "position": "absolute",
+          "inset": "50% auto auto 50%",
+          "display": "flex",
+          "justify-content": "center",
+          "align-items": "center",
+          "font-size": "5rem",
+          "font-family": "STZhongsong",
+          "color": "#F50C3B",
+          "font-style": "italic",
+          "transform": "translate(-50%, -50%)"
+        }
+      },
+      "directives": [],
+      "events": {}
+    }
+  ]
+}

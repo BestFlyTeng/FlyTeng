@@ -1,0 +1,49 @@
+{
+  "name": "FooterIndex",
+  "locked": false,
+  "inject": [],
+  "state": {},
+  "lifeCycles": {},
+  "methods": {},
+  "computed": {},
+  "watch": [],
+  "css": "",
+  "props": [],
+  "emits": [],
+  "slots": [],
+  "dataSources": {},
+  "__VTJ_BLOCK__": true,
+  "__VERSION__": "1738897021151",
+  "id": "2ks14fk04a",
+  "nodes": [
+    {
+      "id": "2veuxkzsor",
+      "name": "ElFooter",
+      "from": "element-plus",
+      "invisible": false,
+      "locked": false,
+      "children": [
+        {
+          "id": "4qrfq7dk5e",
+          "name": "p",
+          "from": "",
+          "invisible": false,
+          "locked": false,
+          "children": "footer",
+          "props": {},
+          "directives": [],
+          "events": {}
+        }
+      ],
+      "props": {
+        "style": {
+          "display": "flex",
+          "align-items": "center",
+          "justify-content": "center"
+        }
+      },
+      "directives": [],
+      "events": {}
+    }
+  ]
+}

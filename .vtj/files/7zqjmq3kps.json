@@ -1,0 +1,48 @@
+{
+  "name": "Home",
+  "locked": false,
+  "inject": [],
+  "state": {},
+  "lifeCycles": {},
+  "methods": {},
+  "computed": {},
+  "watch": [],
+  "css": "",
+  "props": [],
+  "emits": [],
+  "slots": [],
+  "dataSources": {},
+  "__VTJ_BLOCK__": true,
+  "__VERSION__": "1738902427508",
+  "id": "7zqjmq3kps",
+  "nodes": [
+    {
+      "id": "8s3f4m35qq",
+      "name": "HeaderIndex",
+      "from": {
+        "type": "Schema",
+        "id": "lvudych1c"
+      },
+      "invisible": false,
+      "locked": false,
+      "children": [],
+      "props": {},
+      "directives": [],
+      "events": {}
+    },
+    {
+      "id": "hjknjvdbow",
+      "name": "WaitDevelop",
+      "from": {
+        "type": "Schema",
+        "id": "f6i12nwsdv"
+      },
+      "invisible": false,
+      "locked": false,
+      "children": [],
+      "props": {},
+      "directives": [],
+      "events": {}
+    }
+  ]
+}
