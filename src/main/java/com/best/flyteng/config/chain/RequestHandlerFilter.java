@@ -1,25 +1,28 @@
 package com.best.flyteng.config.chain;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.best.flyteng.entity.EnvironmentProperty;
+import com.best.flyteng.utils.RedisUtils;
 import com.best.flyteng.utils.Sm2Util;
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
+import com.best.flyteng.utils.TokenUtils;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import lombok.SneakyThrows;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.HtmlSanitizer;
+import org.owasp.html.PolicyFactory;
+import org.owasp.html.Sanitizers;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * 请求加解密过滤器
  */
 public class RequestHandlerFilter implements Filter {
   private final String smPrivateKey;
+  private RedisUtils<String> redisUtils;
 
   public RequestHandlerFilter(EnvironmentProperty environmentProperty) {
     smPrivateKey = environmentProperty.getPrivateKey();
@@ -33,9 +36,9 @@ public class RequestHandlerFilter implements Filter {
   /**
    * 进行请求加密
    */
+  @SneakyThrows
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-    System.out.println(((HttpServletRequest) request).getMethod());
     // TODO: 分片解密文件
     if ("multipart/form-data".equals(request.getContentType())) {
       chain.doFilter(request, response);
@@ -50,7 +53,15 @@ public class RequestHandlerFilter implements Filter {
     data = JSONObject.parseObject(data).get("data").toString();
     // 解析
     String body = Sm2Util.decrypt(smPrivateKey, data);
-    request = new BodyRequestWrapper((HttpServletRequest) request, body);
+
+    // XSS 防范
+    PolicyFactory factory = new HtmlPolicyBuilder()
+            .disallowElements("script", "iframe")
+            .toFactory();
+    String s = factory.sanitize(body)
+            .replace("&#34;", "\"")
+            .replace("&#64;", "@");
+    request = new BodyRequestWrapper((HttpServletRequest) request, s);
     chain.doFilter(request, response);
   }
 

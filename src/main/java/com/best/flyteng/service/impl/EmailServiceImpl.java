@@ -21,11 +21,14 @@ public class EmailServiceImpl implements IEmailService {
 
   @Override
   public String sendVerifyCode(SendVerifyCode sendVerifyCode) throws BestException {
-    int retry = 1;
+    // 重试时间(分钟)
+    int retry = 2;
     if (ObjectUtils.isEmpty(redisUtils.get(sendVerifyCode.getTo()))) {
       String code = RandomUtil.randomString(6);
-      redisUtils.set(sendVerifyCode.getTo(), code, retry, TimeUnit.MINUTES);
-      return emailUtils.sendEmail(sendVerifyCode.getTo(), "验证码", code) ? "发送成功" : "发送失败";
+      if (emailUtils.sendEmail(sendVerifyCode.getTo(), "验证码", code)) {
+        redisUtils.set(sendVerifyCode.getTo(), code, retry, TimeUnit.MINUTES);
+        return "发送成功";
+      } else throw new BestException("发送邮件异常");
     }
     return "请在" + retry + "分钟后重试。";
   }

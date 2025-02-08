@@ -2,35 +2,27 @@ package com.best.flyteng.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User implements UserDetails {
+public class User {
   @TableId(type = IdType.ASSIGN_ID)
   private Long id;
-  private String nickname;
   private String name;
+  @NotBlank
+  @Email
   private String email;
+  @NotBlank
   private String password;
   private String persona;
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singletonList(new SimpleGrantedAuthority(persona));
-  }
-
-  @Override
-  public String getUsername() {
-    return this.name;
-  }
+  private String enabled;
+  private LocalDateTime createTime;
 }

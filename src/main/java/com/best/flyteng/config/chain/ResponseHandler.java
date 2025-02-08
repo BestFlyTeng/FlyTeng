@@ -35,7 +35,11 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
   public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest request, ServerHttpResponse serverHttpResponse) {
     serverHttpResponse.getHeaders().setContentType(MediaType.APPLICATION_JSON);
     if (body instanceof String) {
-      return JSONObject.toJSONString(ResultData.success(body));
+      JSONObject json = new JSONObject();
+      if (!((String) body).isEmpty()) {
+        json.put("tips", body);
+      }
+      return JSONObject.toJSONString(ResultData.success(json));
     }
     if (body instanceof ResultData) {
       return body;

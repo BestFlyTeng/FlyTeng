@@ -9,4 +9,6 @@ import org.springframework.stereotype.Component;
 public class EnvironmentProperty {
   @Value("${sm.private.key}")
   private String privateKey;
+  @Value("${sm.public.key}")
+  private String publicKey;
 }

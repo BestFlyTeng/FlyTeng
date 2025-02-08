@@ -2,6 +2,7 @@ package com.best.flyteng.utils;
 
 import cn.hutool.crypto.SmUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
+import com.best.flyteng.config.BestException;
 
 /**
  * 加解密工具类
@@ -16,7 +17,7 @@ public class Sm2Util {
    */
   public static String encrypt(String publicKey, String data) {
     return SmUtil.sm2(null, publicKey)
-            .encryptHex(data.getBytes(), KeyType.PublicKey)
+            .encryptHex(data, KeyType.PublicKey)
             // 加密后，密文前面会有04，需要去掉
             .substring(2);
   }
@@ -28,10 +29,14 @@ public class Sm2Util {
    * @param data       密文
    * @return 明文
    */
-  public static String decrypt(String privateKey, String data) {
+  public static String decrypt(String privateKey, String data) throws BestException {
     // 前端加密是没有04的，所以解析的时候要加04
     data = "04" + data;
-    return SmUtil.sm2(privateKey, null)
-            .decryptStr(data, KeyType.PrivateKey);
+    try {
+      return SmUtil.sm2(privateKey, null)
+              .decryptStr(data, KeyType.PrivateKey);
+    } catch (Exception e) {
+      return null;
+    }
   }
 }

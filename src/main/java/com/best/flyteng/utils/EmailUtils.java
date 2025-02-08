@@ -22,7 +22,7 @@ public class EmailUtils {
   @Value("${spring.mail.password}")
   private String password;
 
-  public Boolean sendEmail(String to, String subject, String body) throws BestException {
+  public boolean sendEmail(String to, String subject, String body) throws BestException {
     Properties props = new Properties();
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.port", port);
@@ -43,7 +43,7 @@ public class EmailUtils {
       Transport.send(message);
       log.info("向 {} 发送邮件成功", to);
     } catch (Exception e) {
-      throw new BestException("发送邮件异常");
+      return false;
     }
     return true;
   }
